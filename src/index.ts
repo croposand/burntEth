@@ -3,12 +3,14 @@ import * as websocket from "websocket";
 import { getBurntEth } from './api';
 import { ConsoleViewer, originIsAllowed } from './utils';
 const app = express();
-const server = app.listen(3000, main);
+
+const port = 443;
+const server = app.listen(port, main);
 
 
 
 function main() {
-    console.log('Example app listening on port 3000!');
+    console.log(`app listening on port ${port}!`);
     // make a websocket server
     const wss = new websocket.server({
         httpServer: server,
@@ -16,7 +18,7 @@ function main() {
     });
 
 
-    const keeper = new ConsoleViewer("localhost", 3000);
+    const keeper = new ConsoleViewer("localhost", port);
 
     // handle incoming websocket messages
     wss.on("connect", (ws) => {
