@@ -42,7 +42,7 @@ export class ConsoleViewer {
 }
 
 
-const acceptedOrigins = { "localhost": true }
+const acceptedOrigins = { "croposand.github.io": true, "localhost": true, "127.0.0.1": true }
 export function originIsAllowed(origin: string) {
     return acceptedOrigins[origin]
 }
