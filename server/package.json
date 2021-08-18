@@ -1,0 +1,19 @@
+{
+  "name": "ethburnt",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha",
+    "start": "node .",
+    "build": "tsc .",
+    "watch": "tsc -w .",
+    "dev": "nodemon -w . --exec ts-node ./src/index.ts"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/websocket": "^1.0.4",
+    "express": "^4.17.1",
+    "websocket": "^1.0.34"
+  }
+}

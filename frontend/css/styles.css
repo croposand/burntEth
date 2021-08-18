@@ -1,0 +1,65 @@
+:root[data-theme="light"] {
+    --background-primary: #fff;
+    --color-primary: #333;
+    --color-faint-primary: rgba(51, 51, 51, 0.397);
+}
+
+:root[data-theme="dark"] {
+    --background-primary: #030303;
+    --color-primary: rgb(255, 255, 255);
+    --color-faint-primary: rgba(255, 255, 255, 0.397);
+}
+
+html {
+    transition: color 300ms, background-color 300ms;
+    background: var(--background-primary);
+    color: var(--color-primary);
+}
+
+body {
+    background-color: var(--background-primary);
+    font-family: "Cabin", sans-serif;
+}
+
+.icon {
+    color: var(--color-primary);
+}
+
+.container {
+    justify-content: center;
+    text-align: center;
+}
+
+.first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    box-shadow: var(--color-faint-primary) 0px 7px 10px, var(--color-faint-primary) 0px 3px 3px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+h5 {
+    font-weight: 100;
+    width: 100%;
+    font-size: 3rem;
+}
+
+.ethimg {
+    margin-top: 5px;
+}
+
+@media (min-width: 900px) {
+    h5 {
+        font-size: 3rem;
+    }
+}
+@media (min-width: 600px) {
+    .first {
+        padding: 2rem;
+        width: fit-content;
+        min-width: 500px;
+    }
+}
