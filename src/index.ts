@@ -7,6 +7,9 @@ const app = express();
 const port = 443;
 const server = app.listen(port, main);
 
+app.get("/status", (req, res) => {
+    res.send("ok");
+});
 
 
 function main() {
@@ -14,7 +17,8 @@ function main() {
     // make a websocket server
     const wss = new websocket.server({
         httpServer: server,
-        autoAcceptConnections: true
+        autoAcceptConnections: true,
+
     });
 
 
