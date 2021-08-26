@@ -1,6 +1,7 @@
 import { roundNum } from "./utils";
 import * as webSocket from "websocket"
-export function getBurntEth(cb: Function) {
+import fetch from "node-fetch"
+export function getBurntEth_DEPRICATED(cb: Function) {
     let kprice = 0;
     const kbd = () => {
         const web3d = new webSocket.w3cwebsocket("wss://api.ultrasound.money/fees/base-fee-feed", 'echo-protocol');
@@ -45,4 +46,31 @@ export function getBurntEth(cb: Function) {
     setInterval(() => {
         kbd()
     }, 8000);
+}
+
+export async function getBurntEth(cb: Function) {
+    let old_total_burned = 0;
+    setInterval(async () => {
+        const data = await fetch("https://etherchain.org/burn/data", {
+            "headers": {
+                "accept": "application/json, text/javascript, */*; q=0.01",
+                "accept-language": "en,en-US;q=0.9,ar;q=0.8",
+                "sec-ch-ua": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+                "sec-ch-ua-mobile": "?0",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "x-requested-with": "XMLHttpRequest"
+            },
+            "referrer": "https://etherchain.org/burn",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "body": null,
+            "method": "GET",
+            "mode": "cors"
+        }).then(data => data.json())
+
+        if (data.old_total_burned === old_total_burned) return
+        old_total_burned = data.old_total_burned;
+        cb(data.total_burned)
+    }, 5000)
 }
